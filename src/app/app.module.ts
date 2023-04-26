@@ -2,16 +2,24 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+
+import { AppComponent } from './app.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { BigTitleComponent } from './components/big-title/big-title.component';
+
 import { SharedModule } from './shared/shared.module';
-import { HeaderComponent } from './shared/components/header/header.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { BigTitleComponent } from './shared/components/big-title/big-title.component';
+import { HttpClientModule } from '@angular/common/http';
+import { VerifyOtpComponent } from './pages/verify-otp/verify-otp.component';
+import { VerifyComponent } from './pages/verify/verify.component';
+import { UsersComponent } from './pages/users/users.component';
+
 
 @NgModule({
   declarations: [
@@ -21,15 +29,19 @@ import { BigTitleComponent } from './shared/components/big-title/big-title.compo
     RegisterComponent,
     HeaderComponent,
     FooterComponent,
-    BigTitleComponent
+    BigTitleComponent,
+    VerifyOtpComponent,
+    VerifyComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule,
+    ReactiveFormsModule,
     FormsModule,
-    ReactiveFormsModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
