@@ -18,7 +18,7 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { VerifyOtpComponent } from './pages/verify-otp/verify-otp.component';
 import { VerifyComponent } from './pages/verify/verify.component';
-import { UsersComponent } from './pages/users/users.component';
+import { AboutComponent } from './pages/about/about.component';
 
 
 @NgModule({
@@ -32,7 +32,7 @@ import { UsersComponent } from './pages/users/users.component';
     BigTitleComponent,
     VerifyOtpComponent,
     VerifyComponent,
-    UsersComponent
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,36 +4,43 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { allUsers } from 'src/app/models/users';
-import { Users } from 'src/app/services/global.service';
+import { Subjects } from 'src/app/services/global.service';
 import { HttpHeaderService } from 'src/app/services/http-header.service';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  selector: 'app-manage-subjects',
+  templateUrl: './manage-subjects.component.html',
+  styleUrls: ['./manage-subjects.component.scss']
 })
-export class UsersComponent implements OnInit {
-
-  users: allUsers[] = [];
+export class ManageSubjectsComponent implements OnInit {
+  loading = true;
   displayedColumns: string[] = ['fullName', 'gender', 'nationalId', 'phoneNumber', 'email', 'action'];
   dataSource!: MatTableDataSource<allUsers>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private http:HttpHeaderService) {}
+  constructor(private http: HttpHeaderService) { }
 
-  getUsers() {
+
+  ngOnInit(): void {
+    this.getManageCenters();
+  }
+  getManageCenters() {
+    this.loading = true;
     let header = new HttpHeaders({
-      Authorization: 'Bearer ' + localStorage.getItem('token')??''
+      Authorization: 'Bearer ' + localStorage.getItem('token') ?? ''
     });
 
-    this.http.getHeader(Users.get,header).subscribe({
-      next:(res) => {
-        this.users = res;
-        console.log(this.users);
+    this.http.getHeader(Subjects.get, header).subscribe({
+      next: (res) => {
+        this.loading = false;
+        this.dataSource = new MatTableDataSource(res);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
       },
-      error:(err) => {
+      error: (err) => {
+        this.loading = false;
         console.error(err);
       }
     })
@@ -51,11 +58,6 @@ export class UsersComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-
-  ngOnInit(): void {
-    this.getUsers();
   }
 
 

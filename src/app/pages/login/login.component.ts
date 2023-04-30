@@ -58,6 +58,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.http.Post(Account.postLogin, this.loginForm.value).subscribe({
       next: (res) => {
         localStorage.setItem('token', res.token);
+        localStorage.setItem('name', res.name);
         location.href = '/';
 
       },

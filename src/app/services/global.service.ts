@@ -14,3 +14,15 @@ export enum Users {
   post = 'users',
   delete = 'users/'
 }
+
+export enum Centers {
+  get = 'centers',
+  post = 'centers',
+  delete = 'centers/'
+}
+
+export enum Subjects {
+  get = 'subjects',
+  post = 'subjects',
+  delete = 'subjects/'
+}
